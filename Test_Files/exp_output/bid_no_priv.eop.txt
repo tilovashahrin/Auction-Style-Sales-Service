@@ -1,0 +1,8 @@
+enter username:
+enter command:
+item name:
+seller's username:
+new bid($):
+ERROR: New bids must be at least 5% higher than the current highest bid. 
+enter command:
+logging out of account...

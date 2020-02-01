@@ -1,0 +1,9 @@
+enter username:
+enter command:
+enter command:
+item name:
+seller's username:
+new bid($):
+ERROR: bid is less than the minimum amount
+enter command:
+logging out of account...

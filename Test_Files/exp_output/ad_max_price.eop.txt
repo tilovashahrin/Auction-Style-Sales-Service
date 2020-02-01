@@ -1,0 +1,7 @@
+Please log in
+Enter Username:
+Enter command:
+Item name:
+Minimum bid ($): 
+Number of days:
+ERROR: Maximum price exceeded for minimum bid. Minimum bid must be $999.99 or less.

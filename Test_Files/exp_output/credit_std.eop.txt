@@ -1,0 +1,7 @@
+enter username:
+enter command:
+enter command:
+amount of credit($):
+successful!
+enter command:
+logging out of account...

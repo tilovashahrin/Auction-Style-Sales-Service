@@ -1,0 +1,5 @@
+Enter username:
+Enter command:
+Enter command:
+logging out of account...
+ERROR:Cannot perform this action if not logged in

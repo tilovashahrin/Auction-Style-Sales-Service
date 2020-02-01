@@ -1,0 +1,10 @@
+Enter username:
+Enter command:
+Enter command:
+item name:
+min bid ($):
+num of days:
+ERROR: max number of days exceeded
+Enter command:
+logging out of account...
+

@@ -1,0 +1,2 @@
+Enter command:
+ERROR: has not logged into system

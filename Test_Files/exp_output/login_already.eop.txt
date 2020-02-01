@@ -1,0 +1,5 @@
+Enter username:
+Enter command:
+ERROR: User is already logged in.
+Enter command:
+logging out of account...

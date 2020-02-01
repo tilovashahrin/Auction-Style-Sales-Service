@@ -1,0 +1,9 @@
+Enter username:
+Enter command:
+Enter command:
+item name:
+minimum bid ($): 
+ERROR: Advertisement incomplete..
+Enter command:
+logging out of account...
+

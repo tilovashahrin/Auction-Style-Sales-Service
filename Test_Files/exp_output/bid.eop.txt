@@ -1,0 +1,9 @@
+Enter username:
+Enter command:
+Enter command:
+item name:
+seller's username:
+new bid amount($):
+information saved to daily transaction file...
+Enter command:
+logging out of account...

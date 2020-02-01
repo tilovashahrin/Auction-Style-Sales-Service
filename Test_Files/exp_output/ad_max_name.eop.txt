@@ -1,0 +1,8 @@
+Please log in:
+Enter Username:
+Enter command:
+Item name:
+Min bid:
+Auction days:
+ERROR: Maximum characters exceeded. 
+Item name must be 25 letters or less.

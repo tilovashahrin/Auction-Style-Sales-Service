@@ -1,0 +1,9 @@
+Enter username:
+Enter command:
+Enter command:
+item name:
+minimum bid($):
+number of days:
+advertisement processed, saved into daily transaction file
+Enter command:
+logging out of account...

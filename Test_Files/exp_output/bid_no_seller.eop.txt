@@ -1,0 +1,9 @@
+enter username:
+enter command:
+enter command:
+item name:
+seller's username:
+new bid($):
+ERROR: seller for this item does not exist
+enter command:
+logging out of account...

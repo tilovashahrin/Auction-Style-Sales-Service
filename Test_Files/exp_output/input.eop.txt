@@ -1,0 +1,4 @@
+Enter username:
+Enter command:
+Enter command:
+user logged out
