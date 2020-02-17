@@ -16,11 +16,11 @@ public:
 
 	AccountManager(bool _logStatus, char _user_type, string _username ); // For Testing Purposes
 
-	void login(string _username);
+	int login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
 
-	void logout();
+	int logout(); // 0 = Success, 1 = Already Logged Out
 
-	string createUser() {};
+	int createUser();
 
 	void deleteUser() {};
 
