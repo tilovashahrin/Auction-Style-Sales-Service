@@ -25,7 +25,7 @@ void UserActivity::advertise(string item_name, int num_days, float min_bid) {
 	cin >> num_days;
 }
 
-float UserActivity::bid(string sellers_username, string item_name, float bid_amount, string user_type) {
+void UserActivity::bid(string sellers_username, string item_name, float bid_amount, string user_type) {
 	
 	cout << "== Create a bid ==";
 	cout << "\n Enter the item name: ";
@@ -48,7 +48,7 @@ float UserActivity::bid(string sellers_username, string item_name, float bid_amo
 
 }
 
-float UserActivity::addCredit(string credit_username, string user_type, float transf_credit) {
+error UserActivity::addCredit(string credit_username, string user_type, float transf_credit) {
 	cout << "In a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
 		cout << "\nEnter username to which credit is being added: ";
