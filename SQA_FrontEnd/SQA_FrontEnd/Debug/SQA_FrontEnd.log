@@ -1,4 +1,6 @@
-﻿  main.cpp
-C:\Users\Rory-UOIT\Work Folder\1. Schooling\University - UOIT\Quality Assurance - 3060U\Project\SQA_FrontEnd\SQA_FrontEnd\main.cpp(12,46): warning C4305: 'argument': truncation from 'int' to 'char'
-C:\Users\Rory-UOIT\Work Folder\1. Schooling\University - UOIT\Quality Assurance - 3060U\Project\SQA_FrontEnd\SQA_FrontEnd\main.cpp(12,31): warning C4309: 'argument': truncation of constant value
+﻿  AccountManager.cpp
+  main.cpp
+C:\Users\Rory-UOIT\Work Folder\1. Schooling\University - UOIT\Quality Assurance - 3060U\Project\SQA_FrontEnd\SQA_FrontEnd\main.cpp(13,46): warning C4305: 'argument': truncation from 'int' to 'char'
+C:\Users\Rory-UOIT\Work Folder\1. Schooling\University - UOIT\Quality Assurance - 3060U\Project\SQA_FrontEnd\SQA_FrontEnd\main.cpp(13,31): warning C4309: 'argument': truncation of constant value
+  Generating Code...
   SQA_FrontEnd.vcxproj -> C:\Users\Rory-UOIT\Work Folder\1. Schooling\University - UOIT\Quality Assurance - 3060U\Project\SQA_FrontEnd\Debug\SQA_FrontEnd.exe

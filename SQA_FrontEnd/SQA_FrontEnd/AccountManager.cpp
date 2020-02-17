@@ -8,31 +8,37 @@ AccountManager::AccountManager() {
 	username = "";
 } 
 
-AccountManager::AccountManager(bool _logStatus, char _user_type, string _username) {
+AccountManager::AccountManager(bool _logStatus, char _user_type, string _username) // Using for testing purposes
+{
 	logStatus = _logStatus;
 	user_type = _user_type;
 	username = _username;
 }
-	
-void AccountManager::login(string _username) {
+
+int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged In, 2 = No Account
+{
 	if (logStatus) {
-		cout << username << " is already logged in.\n";
+		return 1; // Already logged in
 	}
-	else {
-		//Check data base for username would go first 
-		username = _username;
-		logStatus = true;
-	}
+	//Check data base for username would go first 
+	username = _username;
+	logStatus = true;
+	return 0;
 }
-void AccountManager::logout() {
+
+int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
+{
 	if (!logStatus) {
-		cout << "User is already logged out.\n";
+		return 1; // Already logged out
 	}
-	else {
-		username = "";
-		logStatus = false;
-		user_type = 0;
-		// needs to print transation file on logout
-	}
+	username = "";
+	logStatus = false;
+	user_type = 0;
+	// needs to print transation file on logout
+	return 0;
+}
+
+int AccountManager::createUser() {
+	return 0;
 }
 

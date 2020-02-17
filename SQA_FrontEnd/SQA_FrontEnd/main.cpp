@@ -7,6 +7,7 @@ int main() {
     char selection;
     string username;
     bool menu = true;// keep menu running
+    int errorCode;
 
     //AccountManager user; // Regular use
     AccountManager user(true, 'AA', "user_1"); // Testing purpose
@@ -15,7 +16,9 @@ int main() {
         cout << "\n Menu";
 
         cout << "\n========";
-
+        if (user.getLogStatus()) {
+            cout << "\n Current User: " << user.getUsername() << "\n========";
+        }
         cout << "\n I - Log In";
 
         cout << "\n O - Log Out";
@@ -46,16 +49,35 @@ int main() {
         case 'i': {cout << "\n - Log In to account -\n";}
                 cout << "Enter Username: ";
                 cin >> username;
-                user.login(username);
-                cout << user.getUsername() << " is logged in.\n";
+                errorCode = user.login(username);
+                if (errorCode == 0) {
+                    cout << "Success! "<< user.getUsername() << " is now logged in.\n";
+                }
+                else if (errorCode == 1) {
+                    cout<< "ERROR: Cannot log in, "<< user.getUsername() << " is already logged in.\n";
+                }
+                else if (errorCode == 2) {
+                    cout << "ERROR: Cannot log in, " << username << " was not found.\n";
+                }
+                else{
+                    cout << user.getUsername() << " is logged in.\n";
+                }
 
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'O':
         case 'o': {cout << "\n - Log out of account -\n";}
-                user.logout();
-                cout << "User is now logged out\n";
+                errorCode = user.logout();
+                if (errorCode == 0) {
+                    cout << "Success! User is now logged out.\n";
+                }
+                else if (errorCode == 1) {
+                    cout << "ERROR: User is already logged out.\n";
+                }
+                else {
+                    cout << "User is now logged out\n";
+                }
 
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
@@ -98,9 +120,7 @@ int main() {
                 break;
         case 'X':
         case 'x': {cout << "\n To exit the menu";}
-                if (!user.getLogStatus()) {
-                    user.logout();
-                }
+                user.logout();
                 menu = false;
                 break;
                 // other than A, M, D and X...
