@@ -8,13 +8,14 @@ class AccountManager : public UserActivity
 {
 private:
 	bool logStatus; // true = logged in, false = logged out
-	char user_type; // AA=admin, FS=full-standard, BS=buy-standard,SS=sell-standard
+	string user_type; // AA=admin, FS=full-standard, BS=buy-standard,SS=sell-standard
 	string username;
+	float credits;
 
 public:
 	AccountManager();
 
-	AccountManager(bool _logStatus, char _user_type, string _username ); // For Testing Purposes
+	AccountManager(bool _logStatus, string _user_type, string _username); // For Testing Purposes
 
 	int login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
 
@@ -28,6 +29,7 @@ public:
 
 	string getUsername() { return username; };
 	bool getLogStatus() { return logStatus; };
-	char getUserType() { return user_type; };
+	string getUserType() { return user_type; };
+	float getCredits() { return credits; }
 };
 
