@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "AccountManager.h"
 #include "UserActivity.h"
 using namespace std;
@@ -9,15 +10,19 @@ int main() {
     bool menu = true;// keep menu running
     int errorCode;
 
-    //AccountManager user; // Regular use
-    AccountManager user(true, 'AA', "user_1"); // Testing purpose
-    
-    while (menu) {
-        cout << "\n Menu";
+    AccountManager user; // Regular use
+    //AccountManager user(true, 'AA', "user_1"); // Testing purpose
+    cout << setprecision(2) << fixed;
 
+    while (menu) {
+        
+        cout << "\n Menu";
         cout << "\n========";
         if (user.getLogStatus()) {
-            cout << "\n Current User: " << user.getUsername() << "\n========";
+            cout << "\n Current User: " << user.getUsername()
+                    << "\n User Funds: $" << user.getCredits()
+                    << "\n User Type: " << user.getUserType()
+                    << "\n========";
         }
         cout << "\n I - Log In";
 
