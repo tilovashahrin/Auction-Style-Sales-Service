@@ -1,16 +1,22 @@
 #include <iostream>
+#include "AccountManager.h"
+#include "UserActivity.h"
+
 using namespace std;
+
 
 int main() {
     char selection;
-
+    string username;
+    AccountManager user;
+    
 
 
     cout << "\n Menu";
 
     cout << "\n========";
 
-    cout << "\n A - Append";
+    cout << "\n I - Log In";
 
     cout << "\n M - Modify";
 
@@ -27,8 +33,12 @@ int main() {
 
 
     switch (selection){
-    case 'A':
-    case 'a': {cout << "\n To append a record\n";}
+    case 'I':
+    case 'i': {cout << "\nLog In to account\n";}
+            cout << "\nEnter Username\n";
+            cin >> username;
+            user.login(username);
+            cout<< user.getUsername()<< " is logged in.";
             break;
     case 'M':
     case 'm': {cout << "\n To modify a record";}
