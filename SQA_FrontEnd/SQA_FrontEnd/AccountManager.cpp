@@ -1,4 +1,6 @@
 #include "AccountManager.h"
+#include "UserActivity.h"
+#include "Transaction.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -57,6 +59,7 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	if (!logStatus) {
 		return 1; // Already logged out
 	}
+
 	username = username.append(15 - username.length(), ' '); // Add Whitespace
 	string line;
 	ifstream infile("DataFiles/UserDB.txt");
@@ -105,4 +108,3 @@ int AccountManager::createUser() {
 		return 1; // Not logged in to a admin user
 	}
 	return 0;
-}
