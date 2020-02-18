@@ -1,8 +1,8 @@
 #include "UserActivity.h"
 #include "AccountManager.h"
+#include "Transaction.h"
 #include <string>
 #include <iostream>
-#include <fstream>
 using namespace std;
 
 UserActivity::UserActivity() {
@@ -11,10 +11,16 @@ UserActivity::UserActivity() {
 	min_bid = 00.00; //less than 999.99
 	bid_amount = 00.00;
 	transf_credit = 00.00;
+	transf_credit = 00.00;
+	refund_credit = 00.00;
+	previous_bid = 00.00;
+	sellers_username = "";
+	buyers_username = "";
+	credit_username = "";
 }
 
 
-void UserActivity::advertise(string item_name, int num_days, float min_bid) {
+void UserActivity::advertise() {
 	cout << "\nEnter the name of the item: ";
 	cin >> item_name;
 
@@ -25,7 +31,7 @@ void UserActivity::advertise(string item_name, int num_days, float min_bid) {
 	cin >> num_days;
 }
 
-void UserActivity::bid(string sellers_username, string item_name, float bid_amount, string user_type) {
+void UserActivity::bid(string user_type) {
 	
 	cout << "== Create a bid ==";
 	cout << "\n Enter the item name: ";
@@ -48,7 +54,7 @@ void UserActivity::bid(string sellers_username, string item_name, float bid_amou
 
 }
 
-error UserActivity::addCredit(string credit_username, string user_type, float transf_credit) {
+void UserActivity::addCredit(string user_type) {
 	cout << "In a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
 		cout << "\nEnter username to which credit is being added: ";
@@ -62,7 +68,7 @@ error UserActivity::addCredit(string credit_username, string user_type, float tr
 	}
 }
 
-void UserActivity::refund(string user_type, string buyers_username, string sellers_username, float refund_credit) {
+void UserActivity::refund(string user_type) {
 	if (user_type == "AA") {
 		cout << "\nEnter buyer's username: ";
 		cin >> buyers_username;
