@@ -14,10 +14,10 @@ private:
 	float previous_bid;
 
 public:
-	void advertise(string item_name, int num_days, float min_bid);
-	void bid(string sellers_username, string item_name, float bid_amount, string user_type);
-	void addCredit(string credit_username, string user_type, float transf_credit);
-	void refund(string user_type, string buyers_username, string sellers_username, float refund_credit);
+	void advertise();
+	void bid(string user_type);
+	void addCredit(string user_type);
+	void refund(string user_type);
 	float getPreviousBid() { return previous_bid; }
 };
 
