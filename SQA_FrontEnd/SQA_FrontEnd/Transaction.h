@@ -6,10 +6,8 @@ private:
 	float available_credit;
 
 public:
-	void logout_trans();
-	void refund_trans();
-	void adv_trans();
-	void  bid_trans();
-	void account_file();
-	void items_file();
+	void logout_trans(int trans_code, string username, string user_type);
+	void refund_trans(string buyers_username, string sellers_username, float refund_credit);
+	void adv_trans(string item_name, string sellers_username, int num_days, float min_bid);
+	void  bid_trans(string item_name, string sellers_username, string buyers_username, float bid_amount);
 };
