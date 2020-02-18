@@ -60,14 +60,6 @@ void Transaction::account_file() {
 
 }
 
-void Transaction::items_file(string item_name, string sellers_username, int num_days, float bid_amount) {
-	ofstream myfile("Transaction_File.txt");
-	//IIIIIIIIIIIIIIIIIII_SSSSSSSSSSSSSSS_UUUUUUUUUUUUUU_DDD_PPPPPP
+void Transaction::items_file() {
 
-	if (myfile.is_open())
-	{
-		myfile << item_name << "_" << sellers_username << "_" << num_days << "_" << bid_amount;
-		myfile.close();
-	}
-	else { cout << "Unable to open file"; }
 }

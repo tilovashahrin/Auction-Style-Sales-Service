@@ -38,7 +38,6 @@ int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged I
 		{
 			if (_username == line.substr(0, 15)) {
 				username = line.substr(0, 15);
-				// Remove White Space http://www.cplusplus.com/reference/string/string/find_last_not_of/
 				username = username.erase(username.find_last_not_of(" \t\f\v\n\r") + 1);
 				user_type = line.substr(16, 2);
 				credits = stof(line.substr(19,9));
@@ -99,42 +98,117 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	return 0;
 }
 
-
 void AccountManager::createUser() { 
+
 	if (!logStatus) {
 		cout << "ERROR: No account logged in.\n";
-		return; // Already logged out
+		return;
 	}else if (user_type != "AA") {
 		cout << "ERROR: Must be an admin to creat user.\n";
-		return; // Not logged in to a admin user
+		return;
 	}
+
 	string _username, _utype;
 	float _credit;
+
 	cout << "Welcome! Please select a original username (15chr max): ";
 	cin >> _username;
+
 	if (verifyLogin(_username) == true) {
 		cout << "ERROR: Username is already taken.\n";
 		return;
-	}
-	else if(_username.length() > 15){
+	}else if(_username.length() > 15){
 		cout << "ERROR: Username exceeds the 15 character max.\n";
 		return;
 	}
+
 	cout << "What type user will " << _username << " be?\n" 
-		<< "AA = Admin,\nFS = Full - Standard\nBS = Buy - Standard\nSS = Sell - Standard\nPlease select: ";
+			<< "AA = Admin,\nFS = Full - Standard\nBS = Buy - Standard\nSS = Sell - Standard\nPlease select: ";
 	cin >> _utype;
+
 	if (_utype != "AA" && _utype != "FS" && _utype != "BS" && _utype != "SS") {
 		cout << "ERROR: "<< _utype <<" is not user type.\n";
 		return;
 	}
 	cout << "Please enter the funds for " << _username << " ($999999.99 max): ";
-	cin >> _credit;
+	if (!(cin >> _credit)) {
+		std::cin.clear(); //clear bad input flag
+		std::cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+		cout << "ERROR: That is not even a number.\n";
+		return;
+	}
 	if (_credit > 999999.99f) {
 		cout << "ERROR: " << _credit << " exceeds the $999999.99 max.\n";
 		return;
 	}
-	cout << _username << _utype << _credit;
-	return;
+
+	string line;
+	ifstream infile("DataFiles/UserDB.txt");
+	ofstream outfile("DataFiles/temp.txt");
+	if (infile.is_open())
+	{
+		while (getline(infile, line)){
+			outfile << line << endl;
+		}
+		_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
+		stringstream ss;
+		ss << fixed << setprecision(2) << _credit;
+		string sFunds = ss.str();
+		sFunds.insert(sFunds.begin(), 9 - sFunds.length(), '0');
+		outfile << _username << "_" << _utype << "_" << sFunds << endl;
+		infile.close();
+		outfile.close();
+		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
+			cout << "ERROR: There was an error saving the file\n";
+			return;
+		}
+
+		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1)
+			<< " Was Created! They are a " << _utype
+			<< " type user, with $" << _credit << ".\n\n";
+	}
+	else { cout << "ERROR: Could not save, unable to open file"; }
+}
+
+void AccountManager::deleteUser() {
+	if (!logStatus) {
+		cout << "ERROR: No account logged in.\n";
+		return;
+	}
+	else if (user_type != "AA") {
+		cout << "ERROR: Must be an admin to creat user.\n";
+		return;
+	}
+
+	string _username;
+
+	cout << "Please select a user by their username: ";
+	cin >> _username;
+
+	if (verifyLogin(_username) != true) {
+		cout << "ERROR: This user does not exist.\n";
+		return;
+	}
+	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
+	string line;
+	ifstream infile("DataFiles/UserDB.txt");
+	ofstream outfile("DataFiles/temp.txt");
+	if (infile.is_open())
+	{
+		while (getline(infile, line)) {
+			if (_username != line.substr(0, 15)) {
+				outfile << line << endl;
+			}
+		}
+		infile.close();
+		outfile.close();
+		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
+			cout << "ERROR: There was an error saving the file\n";
+			return;
+		}
+		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " is no more!\n\n";
+	}
+	else { cout << "ERROR: Could not save, unable to open file"; }
 }
 
 bool AccountManager::verifyLogin(string _username)

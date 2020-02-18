@@ -1,7 +1,8 @@
 #pragma once
+#include "Transaction.h"
 #include <string>
 using namespace std;
-class UserActivity
+class UserActivity : public Transaction
 {
 private:
 	string item_name;
@@ -17,7 +18,7 @@ private:
 
 public:
 	UserActivity();
-	void advertise();
+	void advertise(string user_type);
 	void bid(string user_type);
 	void addCredit(string user_type);
 	void refund(string user_type);

@@ -20,7 +20,7 @@ UserActivity::UserActivity() {
 }
 
 
-void UserActivity::advertise() {
+void UserActivity::advertise(string user_type) {
 	cout << "\nEnter the name of the item: ";
 	cin >> item_name;
 
