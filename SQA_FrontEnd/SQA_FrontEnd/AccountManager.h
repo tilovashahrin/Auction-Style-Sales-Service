@@ -1,10 +1,10 @@
 #pragma once
-#include "UserActivity.h"
+//#include "UserActivity.h"
 #include <string>
 #include <iostream>
 using namespace std;
 
-class AccountManager : public UserActivity
+class AccountManager// : public UserActivity
 {
 private:
 	bool logStatus; // true = logged in, false = logged out
@@ -15,7 +15,7 @@ private:
 public:
 	AccountManager();
 
-	AccountManager(bool _logStatus, string _user_type, string _username); // For Testing Purposes
+	AccountManager(bool _logStatus, string _user_type, string _username, float _credits); // For Testing Purposes
 
 	int login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
 
@@ -31,5 +31,7 @@ public:
 	bool getLogStatus() { return logStatus; };
 	string getUserType() { return user_type; };
 	float getCredits() { return credits; }
+
+	void setCredits(float _credits) { credits = _credits; };
 };
 

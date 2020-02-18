@@ -11,12 +11,13 @@ int main() {
     int errorCode;
 
     AccountManager user; // Regular use
-    //AccountManager user(true, 'AA', "user_1"); // Testing purpose
+    //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
 
     while (menu) {
         
         cout << "\n Menu";
+
         cout << "\n========";
         if (user.getLogStatus()) {
             cout << "\n Current User: " << user.getUsername()
@@ -119,6 +120,7 @@ int main() {
                 break;
         case 'F':
         case 'f': {cout << "\n Add credit into the system\n";}
+                user.setCredits(1000.00f);
                 // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
