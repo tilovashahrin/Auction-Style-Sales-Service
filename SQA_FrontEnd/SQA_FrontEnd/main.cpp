@@ -102,20 +102,19 @@ int main() {
                 break;
         case 'A':
         case 'a': {cout << "\n - Put up an item for auction -\n";}
-                user.advertise();
-                // Function Call Here
+                user.advertise();// Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'B':
         case 'b': {cout << "\n - Bid on an item for auction -\n";}
-                // Function Call Here
+                user.bid(user_type);// Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
-                // Function Call Here
+        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
+                user.refund();// Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
