@@ -10,8 +10,8 @@ int main() {
     bool menu = true;// keep menu running
     int errorCode;
 
-    AccountManager user; // Regular use
-    //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
+    //AccountManager user; // Regular use
+    AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
 
     while (menu) {
@@ -95,31 +95,35 @@ int main() {
                 system("CLS"); // Clears console
                 break;
         case 'D':
-        case 'd': {cout << "\n - Cancel any items for sale and remove users -\n";}
-                // Function Call Here
+        case 'd': {cout << "\n - Remove users (this also cancels their sales) -\n";}
+                user.deleteUser();
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'A':
         case 'a': {cout << "\n - Put up an item for auction -\n";}
-                user.advertise();// Function Call Here
+                user.advertise();
+                // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'B':
         case 'b': {cout << "\n - Bid on an item for auction -\n";}
-                user.bid(user_type);// Function Call Here
+                user.bid();
+                // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
-                user.refund();// Function Call Here
+        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
+                user.refund();
+                // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'F':
         case 'f': {cout << "\n Add credit into the system\n";}
+                user.addCredit();
                 // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console

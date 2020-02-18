@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 using namespace std;
 class Transaction {
 private:
@@ -12,5 +13,5 @@ public:
 	void adv_trans(string item_name, string sellers_username, int num_days, float min_bid);
 	void  bid_trans(string item_name, string sellers_username, string buyers_username, float bid_amount);
 	void account_file();
-	void items_file(string item_name, string sellers_username, int num_days, float bid_amount);
+	void items_file();
 };

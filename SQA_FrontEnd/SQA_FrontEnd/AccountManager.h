@@ -23,9 +23,14 @@ public:
 
 	void createUser();
 
-	void deleteUser() {};
+	void deleteUser();
 
 	bool verifyLogin(string _username);
+
+	void advertise() { UserActivity::advertise(user_type); };
+	void bid() { UserActivity::bid(user_type); };
+	void addCredit() { UserActivity::addCredit(user_type); };
+	void refund() { UserActivity::refund(user_type); };
 
 	string getUsername() { return username; };
 	bool getLogStatus() { return logStatus; };
