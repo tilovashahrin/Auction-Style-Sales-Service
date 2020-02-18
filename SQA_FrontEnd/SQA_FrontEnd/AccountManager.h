@@ -1,10 +1,10 @@
 #pragma once
-//#include "UserActivity.h"
+#include "UserActivity.h"
 #include <string>
 #include <iostream>
 using namespace std;
 
-class AccountManager// : public UserActivity
+class AccountManager : public UserActivity
 {
 private:
 	bool logStatus; // true = logged in, false = logged out

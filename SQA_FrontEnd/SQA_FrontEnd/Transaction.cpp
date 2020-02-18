@@ -1,5 +1,6 @@
 #include "AccountManager.h"
 #include "UserActivity.h"
+#include "Transaction.h"
 #include <string>
 #include <iostream>
 #include <fstream>

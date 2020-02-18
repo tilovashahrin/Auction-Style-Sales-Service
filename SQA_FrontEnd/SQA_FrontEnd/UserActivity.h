@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+using namespace std;
 class UserActivity
 {
 private:
@@ -14,6 +16,7 @@ private:
 	float previous_bid;
 
 public:
+	UserActivity();
 	void advertise();
 	void bid(string user_type);
 	void addCredit(string user_type);
