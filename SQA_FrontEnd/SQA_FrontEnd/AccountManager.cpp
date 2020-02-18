@@ -99,10 +99,59 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	return 0;
 }
 
-// 0 = Success, 1 = Not Admin, 2 = Username Taken, 3 = Name to long, 4 = Exceeds max funds
-int AccountManager::createUser() { 
-	if (user_type != "AA" || !logStatus) {
-		return 1; // Not logged in to a admin user
+
+void AccountManager::createUser() { 
+	if (!logStatus) {
+		cout << "ERROR: No account logged in.\n";
+		return; // Already logged out
+	}else if (user_type != "AA") {
+		cout << "ERROR: Must be an admin to creat user.\n";
+		return; // Not logged in to a admin user
 	}
-	return 0;
+	string _username, _utype;
+	float _credit;
+	cout << "Welcome! Please select a original username (15chr max): ";
+	cin >> _username;
+	if (verifyLogin(_username) == true) {
+		cout << "ERROR: Username is already taken.\n";
+		return;
+	}
+	else if(_username.length() > 15){
+		cout << "ERROR: Username exceeds the 15 character max.\n";
+		return;
+	}
+	cout << "What type user will " << _username << " be?\n" 
+		<< "AA = Admin,\nFS = Full - Standard\nBS = Buy - Standard\nSS = Sell - Standard\nPlease select: ";
+	cin >> _utype;
+	if (_utype != "AA" && _utype != "FS" && _utype != "BS" && _utype != "SS") {
+		cout << "ERROR: "<< _utype <<" is not user type.\n";
+		return;
+	}
+	cout << "Please enter the funds for " << _username << " ($999999.99 max): ";
+	cin >> _credit;
+	if (_credit > 999999.99f) {
+		cout << "ERROR: " << _credit << " exceeds the $999999.99 max.\n";
+		return;
+	}
+	cout << _username << _utype << _credit;
+	return;
+}
+
+bool AccountManager::verifyLogin(string _username)
+{
+	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
+	string line;
+	ifstream myfile("DataFiles/UserDB.txt");
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			if (_username == line.substr(0, 15)) {
+				return true;
+			}
+		}
+		myfile.close();
+	}
+	else { cout << "Unable to open file"; }
+	return false;
 }
