@@ -1,4 +1,6 @@
 #include "AccountManager.h"
+#include "UserActivity.h"
+#include "Transaction.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -106,4 +108,3 @@ int AccountManager::createUser() {
 		return 1; // Not logged in to a admin user
 	}
 	return 0;
-}
