@@ -10,8 +10,8 @@ int main() {
     bool menu = true;// keep menu running
     int errorCode;
 
-    //AccountManager user; // Regular use
-    AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
+    AccountManager user; // Regular use
+    //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
 
     while (menu) {
@@ -115,7 +115,7 @@ int main() {
                 system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
+        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
                 user.refund();
                 // Function Call Here
                 system("pause"); // Waits for input
