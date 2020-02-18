@@ -138,13 +138,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="UserActivity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="AccountManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Transaction.h" />
     <ClInclude Include="UserActivity.h" />
     <ClInclude Include="AccountManager.h" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 #include <iomanip>
 #include "AccountManager.h"
 #include "UserActivity.h"
+#include "Transaction.h"
 using namespace std;
 
 int main() {
@@ -113,7 +114,7 @@ int main() {
                 system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
+        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
                 // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
