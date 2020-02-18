@@ -1,5 +1,5 @@
 #pragma once
-
+using namespace std;
 class Transaction {
 private:
 	int trans_code;

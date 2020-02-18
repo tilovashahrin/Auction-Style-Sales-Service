@@ -90,7 +90,7 @@ int main() {
                 break;
         case 'C':
         case 'c': {cout << "\n - Create a new user -\n";}
-                // Function Call Here
+                user.createUser();// Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
@@ -120,7 +120,6 @@ int main() {
                 break;
         case 'F':
         case 'f': {cout << "\n Add credit into the system\n";}
-                user.addCredit(1000.00f);
                 // Function Call Here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console

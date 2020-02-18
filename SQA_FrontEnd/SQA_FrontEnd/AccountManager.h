@@ -21,11 +21,11 @@ public:
 
 	int logout(); // 0 = Success, 1 = Already Logged Out
 
-	int createUser();
+	void createUser();
 
 	void deleteUser() {};
 
-	bool verifyLogin() {};
+	bool verifyLogin(string _username);
 
 	string getUsername() { return username; };
 	bool getLogStatus() { return logStatus; };
