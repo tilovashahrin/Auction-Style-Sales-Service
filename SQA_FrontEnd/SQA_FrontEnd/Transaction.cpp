@@ -56,10 +56,3 @@ void  Transaction::bid_trans(string item_name, string sellers_username, string b
 	else { cout << "Unable to open file"; }
 }
 
-void Transaction::account_file() {
-
-}
-
-void Transaction::items_file() {
-
-}
