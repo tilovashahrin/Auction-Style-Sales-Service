@@ -4,14 +4,28 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <limits>
 using namespace std;
 
 AccountManager::AccountManager() {
 	logStatus = false;
-	username = "";
+	//username = "";
 	credits = 00.00;
-	user_type = "";
+	//user_type = "";
+	accountFile = "DataFiles/UserDB.txt";
+	itemFile = "DataFiles/ItemDB.txt";
+	transFile = "DataFiles/Transout.atf";
 } 
+
+AccountManager::AccountManager(string _accountFile, string _itemFile, string _transFile){
+	logStatus = false;
+	//username = "";
+	credits = 00.00;
+	//user_type = "";
+	accountFile = _accountFile;
+	itemFile = _itemFile;
+	transFile = _transFile;
+}
 
 AccountManager::AccountManager(bool _logStatus, string _user_type, string _username, float _credits) // Using for testing purposes
 {
@@ -19,6 +33,9 @@ AccountManager::AccountManager(bool _logStatus, string _user_type, string _usern
 	user_type = _user_type;
 	username = _username;
 	credits = _credits;
+	accountFile = "DataFiles/UserDB.txt";
+	itemFile = "DataFiles/ItemDB.txt";
+	transFile = "DataFiles/Transout.atf";
 }
 
 int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged In, 2 = No Account
@@ -31,7 +48,7 @@ int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged I
 	//15_2_9
 	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
 	string line;
-	ifstream myfile("DataFiles/UserDB.txt");
+	ifstream myfile(accountFile);
 	if (myfile.is_open())
 	{
 		while (getline(myfile, line))
@@ -47,7 +64,11 @@ int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged I
 			}
 		}
 		myfile.close();
-	} else {cout << "Unable to open file"; }
+	}
+	else {
+		cout << "Unable to open file.\n";
+		return 3;
+	}
 	return 2;
 }
 
@@ -58,8 +79,8 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	}
 	username = username.append(15 - username.length(), ' '); // Add Whitespace
 	string line;
-	ifstream infile("DataFiles/UserDB.txt");
-	ofstream outfile("DataFiles/temp.txt");
+	ifstream infile(accountFile);
+	ofstream outfile("temp.txt");
 	if (infile.is_open())
 	{
 		while (getline(infile, line))
@@ -86,12 +107,12 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 		}
 		infile.close();
 		outfile.close();
-		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
+		if (remove(accountFile.c_str()) != 0 || rename("temp.txt", accountFile.c_str()) != 0) {
 			cout << "ERROR: There was an error saving the file\n";
 		}
 		
 	}
-	else { cout << "Could not save, unable to open file"; }
+	else { cout << "Could not save, unable to open file.\n"; }
 	// needs to print transation file on logout and update user account info
 
 	AccountManager();
@@ -132,8 +153,8 @@ void AccountManager::createUser() {
 	}
 	cout << "Please enter the funds for " << _username << " ($999999.99 max): ";
 	if (!(cin >> _credit)) {
-		std::cin.clear(); //clear bad input flag
-		std::cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+		cin.clear(); //clear bad input flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 		cout << "ERROR: That is not even a number.\n";
 		return;
 	}
@@ -143,8 +164,8 @@ void AccountManager::createUser() {
 	}
 
 	string line;
-	ifstream infile("DataFiles/UserDB.txt");
-	ofstream outfile("DataFiles/temp.txt");
+	ifstream infile(accountFile);
+	ofstream outfile("temp.txt");
 	if (infile.is_open())
 	{
 		while (getline(infile, line)){
@@ -191,8 +212,8 @@ void AccountManager::deleteUser() {
 	}
 	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
 	string line;
-	ifstream infile("DataFiles/UserDB.txt");
-	ofstream outfile("DataFiles/temp.txt");
+	ifstream infile(accountFile);
+	ofstream outfile("temp.txt");
 	if (infile.is_open())
 	{
 		while (getline(infile, line)) {
@@ -202,20 +223,20 @@ void AccountManager::deleteUser() {
 		}
 		infile.close();
 		outfile.close();
-		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
+		if (remove(accountFile.c_str()) != 0 || rename("temp.txt", accountFile.c_str()) != 0) {
 			cout << "ERROR: There was an error saving the file\n";
 			return;
 		}
 		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " is no more!\n\n";
 	}
-	else { cout << "ERROR: Could not save, unable to open file"; }
+	else { cout << "ERROR: Could not save, unable to open file\n"; }
 }
 
 bool AccountManager::verifyLogin(string _username)
 {
 	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
 	string line;
-	ifstream myfile("DataFiles/UserDB.txt");
+	ifstream myfile(accountFile);
 	if (myfile.is_open())
 	{
 		while (getline(myfile, line))
@@ -226,6 +247,6 @@ bool AccountManager::verifyLogin(string _username)
 		}
 		myfile.close();
 	}
-	else { cout << "Unable to open file"; }
+	else { cout << "Unable to open file\n"; }
 	return false;
 }

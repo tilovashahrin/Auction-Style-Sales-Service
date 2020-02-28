@@ -11,9 +11,14 @@ private:
 	string user_type; // AA=admin, FS=full-standard, BS=buy-standard,SS=sell-standard
 	string username;
 	float credits;
+	string accountFile;
+	string itemFile;
+	string transFile;
 
 public:
 	AccountManager();
+
+	AccountManager(string _accountFile, string _itemFile, string _transFile);
 
 	AccountManager(bool _logStatus, string _user_type, string _username, float _credits); // For Testing Purposes
 
@@ -38,5 +43,11 @@ public:
 	float getCredits() { return credits; }
 
 	void setCredits(float _credits) { credits = _credits; };
+
+	void printFiles() {
+		cout << "Account Database File: " << accountFile << endl;
+		cout << "Item Database File: " << itemFile << endl;
+		cout << "Transaction File: " << transFile << endl;
+	};
 };
 

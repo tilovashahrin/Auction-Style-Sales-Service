@@ -1,17 +1,25 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include "AccountManager.h"
-#include "UserActivity.h"
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
     char selection;
     string username;
     bool menu = true;// keep menu running
     int errorCode;
-
-    //AccountManager user; // Regular use
-    AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
+    AccountManager user;
+    if (argc == 3) {
+        user = AccountManager(string(argv[1]), string(argv[2]), string(argv[3]));
+    }
+    else {
+        user = AccountManager();
+    }
+    user = AccountManager();
+    user.printFiles();
+    
+    //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
 
     while (menu) {
@@ -64,9 +72,6 @@ int main() {
                 }
                 else if (errorCode == 2) {
                     cout << "ERROR: Cannot log in, " << username << " was not found.\n";
-                }
-                else{
-                    cout << user.getUsername() << " is logged in.\n";
                 }
 
                 system("pause"); // Waits for input
@@ -129,7 +134,7 @@ int main() {
                 system("CLS"); // Clears console
                 break;
         case 'X':
-        case 'x': {cout << "\n To exit the menu";}
+        case 'x': {cout << "\n To exit the menu\n";}
                 user.logout();
                 menu = false;
                 break;
