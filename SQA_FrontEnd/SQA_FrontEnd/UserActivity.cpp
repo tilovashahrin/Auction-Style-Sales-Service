@@ -67,6 +67,7 @@ void UserActivity::bid(string user_type) {
 	
 }
 
+//allows user to add credit to an existing user
 void UserActivity::addCredit(string user_type) {
 	cout << "In a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
@@ -86,6 +87,7 @@ void UserActivity::addCredit(string user_type) {
 	}
 }
 
+//allows user to refund money to buyers account
 void UserActivity::refund(string user_type) {
 	if (user_type == "AA") {
 		cout << "\nEnter buyer's username: ";
