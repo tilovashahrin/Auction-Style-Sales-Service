@@ -10,6 +10,7 @@ int main(int argc, char* argv[]) {
     bool menu = true;// keep menu running
 
     AccountManager user;
+    //takes in exactly 4 arguments
     if (argc == 4) {
         user = AccountManager(string(argv[1]), string(argv[2]), string(argv[3]));
     }
@@ -22,7 +23,6 @@ int main(int argc, char* argv[]) {
     while (menu) {
         
         cout << "\n Menu";
-
         cout << "\n========";
         if (user.getLogStatus()) {
             cout << "\n Current User: " << user.getUsername()
@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
                     << "\n User Type: " << user.getUserType()
                     << "\n========";
         }
+        //options for user to input
         cout << "\n I - Log In";
 
         cout << "\n O - Log Out";
@@ -52,7 +53,6 @@ int main(int argc, char* argv[]) {
         cout << "\n Enter selection: ";
 
         // read the input
-
         cin >> selection;
 
         switch (selection) {
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
                 break;
         case 'D':
         case 'd': {cout << "\n - Remove users (this also cancels their sales) -\n";}
-                user.deleteUser();
+                user.deleteUser(); //Function call here
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
                 system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
+        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
                 user.refund();
                 // Function Call Here
                 system("pause"); // Waits for input
