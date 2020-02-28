@@ -3,6 +3,7 @@
 #include "Transaction.h"
 #include <string>
 #include <iostream>
+#include <limits>
 using namespace std;
 
 UserActivity::UserActivity() {
@@ -25,10 +26,21 @@ void UserActivity::advertise(string user_type) {
 	cin >> item_name;
 
 	cout << "\nEnter minimum bid (eg 15.00): ";
-	cin >> min_bid;
+	if (!(cin >> min_bid)) {
+		cin.clear(); //clear bad input flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+		cout << "ERROR: That is not even a number.\n";
+		return;
+	}
 
 	cout << "\nEnter number of days available to bid: ";
-	cin >> num_days;
+	if (!(cin >> num_days)) {
+		cin.clear(); //clear bad input flag
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+		cout << "ERROR: That is not even a number.\n";
+		return;
+	}
+
 }
 
 void UserActivity::bid(string user_type) {
@@ -43,12 +55,22 @@ void UserActivity::bid(string user_type) {
 	float previous_bid = getPreviousBid();
 	if (user_type != "AA") {
 		cout << "Our last bidding is at " << previous_bid << ".\n You must bid at least 5% higher than the previous bid shown above.\nEnter here (eg. 230.00): ";
-		cin >> bid_amount;
+		if (!(cin >> bid_amount)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
 		bid_amount = previous_bid;
 	}
 	else {
 		cout << "Enter your bid amount here: ";
-		cin >> bid_amount;
+		if (!(cin >> bid_amount)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
 		bid_amount = previous_bid;
 	}
 
@@ -60,11 +82,21 @@ void UserActivity::addCredit(string user_type) {
 		cout << "\nEnter username to which credit is being added: ";
 		cin >> credit_username;
 		cout << "\nEnter amount: ";
-		cin >> transf_credit;
+		if (!(cin >> transf_credit)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
 	}
 	else {
 		cout << "\nEnter amount: ";
-		cin >> transf_credit;
+		if (!(cin >> transf_credit)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
 	}
 }
 
@@ -77,10 +109,14 @@ void UserActivity::refund(string user_type) {
 		cin >> sellers_username;
 
 		cout << "Enter the amount of credit you wish to transfer: ";
-		cin >> refund_credit;
+		if (!(cin >> refund_credit)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
 	}
 	else {
 		cout << "\n ERROR! You do not have authorization to value refunds.";
-		system("pause");
 	}
 }

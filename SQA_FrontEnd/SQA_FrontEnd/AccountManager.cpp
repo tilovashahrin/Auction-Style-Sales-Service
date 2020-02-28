@@ -80,7 +80,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 		cout << "User is already logged out.\n";
 		return;
 	}
-	string _username = username.append(15 - username.length(), ' '); // Add Whitespace
+	username = username.append(15 - username.length(), ' '); // Add Whitespace
 	string line;
 	ifstream infile(accountFile);
 	ofstream outfile("temp.txt");
@@ -88,12 +88,12 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	{
 		while (getline(infile, line))
 		{
-			if (_username == line.substr(0, 15)) {
+			if (username == line.substr(0, 15)) {
 				stringstream ss;
 				ss << fixed << setprecision(2) << credits;
 				string sFunds = ss.str();
 				sFunds.insert(sFunds.begin(), 9 - sFunds.length(), '0');
-				outfile << _username << "_" << user_type << "_" << sFunds << endl;
+				outfile << username << "_" << user_type << "_" << sFunds << endl;
 				logStatus = false;
 			}
 			else {
@@ -105,7 +105,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 			ss << fixed << setprecision(2) << credits;
 			string sFunds = ss.str();
 			sFunds.insert(sFunds.begin(), 9 - sFunds.length(), '0');
-			outfile << _username << "_" << user_type << "_" << sFunds << endl;
+			outfile << username << "_" << user_type << "_" << sFunds << endl;
 			logStatus = false;
 		}
 		infile.close();
@@ -117,7 +117,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	}
 	else { cout << "Could not save, unable to open file.\n"; }
 	// needs to print transation file on logout and update user account info
-	cout << "Success! " << username << " is now logged out.\n";
+	cout << "Success! User is now logged out.\n";
 	logStatus = false;
 	username = "";
 	credits = 00.00;

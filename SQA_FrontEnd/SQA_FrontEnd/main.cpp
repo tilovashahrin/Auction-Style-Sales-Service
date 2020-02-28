@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
     char selection;
     string username;
-    bool menu = true;// keep menu running
+    bool menu = false;// keep menu running whlie true
 
     AccountManager user;
     if (argc == 4) {
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
   
     //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
-    while (menu) {
+    do {
         
         cout << "\n Menu";
 
@@ -62,55 +62,55 @@ int main(int argc, char* argv[]) {
                 cin >> username;
                 user.login(username);
 
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'O':
         case 'o': {cout << "\n - Log out of account -\n";}
                 user.logout();
 
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'C':
         case 'c': {cout << "\n - Create a new user -\n";}
                 user.createUser();// Function Call Here
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'D':
         case 'd': {cout << "\n - Remove users (this also cancels their sales) -\n";}
                 user.deleteUser();
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'A':
         case 'a': {cout << "\n - Put up an item for auction -\n";}
                 user.advertise();
                 // Function Call Here
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'B':
         case 'b': {cout << "\n - Bid on an item for auction -\n";}
                 user.bid();
                 // Function Call Here
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'R':
         case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
                 user.refund();
                 // Function Call Here
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'F':
-        case 'f': {cout << "\n Add credit into the system\n";}
+        case 'f': {cout << "\n Add credit into the //system\n";}
                 user.addCredit();
                 // Function Call Here
-                system("pause"); // Waits for input
-                system("CLS"); // Clears console
+                //system("pause"); // Waits for input
+                //system("CLS"); // Clears console
                 break;
         case 'X':
         case 'x': {cout << "\n To exit the menu\n ";}
@@ -122,6 +122,6 @@ int main(int argc, char* argv[]) {
             // no break in the default case
         }
         cout << "\n";
-    }
+    }while (menu);
     return 0;
 }
