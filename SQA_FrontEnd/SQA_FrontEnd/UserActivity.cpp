@@ -20,12 +20,13 @@ UserActivity::UserActivity() {
 	credit_username = "";
 }
 
-
+//have user create a bidding advertisement
 void UserActivity::advertise(string user_type) {
-	cout << "\nEnter the name of the item: ";
+	cout << "\nEnter the name of the item (in 25 characters or less): ";
 	cin >> item_name;
 
 	cout << "\nEnter minimum bid (eg 15.00): ";
+  
 	if (!(cin >> min_bid)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
@@ -40,9 +41,9 @@ void UserActivity::advertise(string user_type) {
 		cout << "ERROR: That is not even a number.\n";
 		return;
 	}
-
 }
 
+//have a user bid on an item listed
 void UserActivity::bid(string user_type) {
 	
 	cout << "== Create a bid ==";
@@ -73,9 +74,9 @@ void UserActivity::bid(string user_type) {
 		}
 		bid_amount = previous_bid;
 	}
-
 }
 
+//allows user to add credit to an existing user
 void UserActivity::addCredit(string user_type) {
 	cout << "In a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
@@ -98,8 +99,14 @@ void UserActivity::addCredit(string user_type) {
 			return;
 		}
 	}
+
+	if (transf_credit > 1000) {
+		cout << "ERROR! Credit must be less than $1000. Please try again.";
+		return;
+	}
 }
 
+//allows user to refund money to buyers account
 void UserActivity::refund(string user_type) {
 	if (user_type == "AA") {
 		cout << "\nEnter buyer's username: ";
