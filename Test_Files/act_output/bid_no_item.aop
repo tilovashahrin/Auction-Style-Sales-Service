@@ -1,0 +1,14 @@
+
+ Menu
+========
+ I - Log In
+ O - Log Out
+ C - Create (Admin Only)
+ D - Delete (Admin Only)
+ A - Advertise
+ B - Bid
+ R - Refund (Admin Only)
+ F - Add Funds
+ X - Exit
+ Enter selection: 
+ Invalid selection
