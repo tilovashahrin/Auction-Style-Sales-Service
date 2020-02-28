@@ -8,20 +8,17 @@ int main(int argc, char* argv[]) {
     char selection;
     string username;
     bool menu = true;// keep menu running
-    int errorCode;
+
     AccountManager user;
-    if (argc == 3) {
+    if (argc == 4) {
         user = AccountManager(string(argv[1]), string(argv[2]), string(argv[3]));
     }
     else {
         user = AccountManager();
     }
-    user = AccountManager();
-    user.printFiles();
-    
+  
     //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
-
     while (menu) {
         
         cout << "\n Menu";
@@ -63,32 +60,14 @@ int main(int argc, char* argv[]) {
         case 'i': {cout << "\n - Log In to account -\n";}
                 cout << "Enter Username: ";
                 cin >> username;
-                errorCode = user.login(username);
-                if (errorCode == 0) {
-                    cout << "Success! "<< user.getUsername() << " is now logged in.\n";
-                }
-                else if (errorCode == 1) {
-                    cout<< "ERROR: Cannot log in, "<< user.getUsername() << " is already logged in.\n";
-                }
-                else if (errorCode == 2) {
-                    cout << "ERROR: Cannot log in, " << username << " was not found.\n";
-                }
+                user.login(username);
 
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
                 break;
         case 'O':
         case 'o': {cout << "\n - Log out of account -\n";}
-                errorCode = user.logout();
-                if (errorCode == 0) {
-                    cout << "Success! User is now logged out.\n";
-                }
-                else if (errorCode == 1) {
-                    cout << "ERROR: User is already logged out.\n";
-                }
-                else {
-                    cout << "User is now logged out\n";
-                }
+                user.logout();
 
                 system("pause"); // Waits for input
                 system("CLS"); // Clears console
@@ -134,7 +113,7 @@ int main(int argc, char* argv[]) {
                 system("CLS"); // Clears console
                 break;
         case 'X':
-        case 'x': {cout << "\n To exit the menu\n";}
+        case 'x': {cout << "\n To exit the menu\n ";}
                 user.logout();
                 menu = false;
                 break;

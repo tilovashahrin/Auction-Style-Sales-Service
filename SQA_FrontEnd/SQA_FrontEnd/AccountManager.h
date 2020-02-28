@@ -22,9 +22,9 @@ public:
 
 	AccountManager(bool _logStatus, string _user_type, string _username, float _credits); // For Testing Purposes
 
-	int login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
+	void login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
 
-	int logout(); // 0 = Success, 1 = Already Logged Out
+	void logout(); // 0 = Success, 1 = Already Logged Out
 
 	void createUser();
 
@@ -44,7 +44,8 @@ public:
 
 	void setCredits(float _credits) { credits = _credits; };
 
-	void printFiles() {
+	void printFiles() // For testing purposes
+	{
 		cout << "Account Database File: " << accountFile << endl;
 		cout << "Item Database File: " << itemFile << endl;
 		cout << "Transaction File: " << transFile << endl;

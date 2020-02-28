@@ -9,9 +9,9 @@ using namespace std;
 
 AccountManager::AccountManager() {
 	logStatus = false;
-	//username = "";
+	username = "";
 	credits = 00.00;
-	//user_type = "";
+	user_type = "";
 	accountFile = "DataFiles/UserDB.txt";
 	itemFile = "DataFiles/ItemDB.txt";
 	transFile = "DataFiles/Transout.atf";
@@ -38,10 +38,11 @@ AccountManager::AccountManager(bool _logStatus, string _user_type, string _usern
 	transFile = "DataFiles/Transout.atf";
 }
 
-int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged In, 2 = No Account
+void AccountManager::login(string _username) // 0 = Success, 1 = Already Logged In, 2 = No Account
 {
 	if (logStatus) {
-		return 1; // Already logged in
+		cout << "ERROR: Cannot log in, " << username << " is already logged in.\n";
+		return; // Already logged in
 	}
 
 	//UUUUUUUUUUUUUUU_TT_CCCCCCCCC
@@ -60,24 +61,26 @@ int AccountManager::login(string _username) // 0 = Success, 1 = Already Logged I
 				credits = stof(line.substr(19,9));
 				logStatus = true;
 				myfile.close();
-				return 0;
+				cout << "Success! " << username << " is now logged in.\n";
+				return;
 			}
 		}
 		myfile.close();
 	}
 	else {
 		cout << "Unable to open file.\n";
-		return 3;
+		return;
 	}
-	return 2;
+	cout << "ERROR: Cannot log in, " << username << " was not found.\n";
 }
 
-int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
+void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 {
 	if (!logStatus) {
-		return 1; // Already logged out
+		cout << "User is already logged out.\n";
+		return;
 	}
-	username = username.append(15 - username.length(), ' '); // Add Whitespace
+	string _username = username.append(15 - username.length(), ' '); // Add Whitespace
 	string line;
 	ifstream infile(accountFile);
 	ofstream outfile("temp.txt");
@@ -85,12 +88,12 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	{
 		while (getline(infile, line))
 		{
-			if (username == line.substr(0, 15)) {
+			if (_username == line.substr(0, 15)) {
 				stringstream ss;
 				ss << fixed << setprecision(2) << credits;
 				string sFunds = ss.str();
 				sFunds.insert(sFunds.begin(), 9 - sFunds.length(), '0');
-				outfile << username << "_" << user_type << "_" << sFunds << endl;
+				outfile << _username << "_" << user_type << "_" << sFunds << endl;
 				logStatus = false;
 			}
 			else {
@@ -102,7 +105,7 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 			ss << fixed << setprecision(2) << credits;
 			string sFunds = ss.str();
 			sFunds.insert(sFunds.begin(), 9 - sFunds.length(), '0');
-			outfile << username << "_" << user_type << "_" << sFunds << endl;
+			outfile << _username << "_" << user_type << "_" << sFunds << endl;
 			logStatus = false;
 		}
 		infile.close();
@@ -114,9 +117,11 @@ int AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	}
 	else { cout << "Could not save, unable to open file.\n"; }
 	// needs to print transation file on logout and update user account info
-
-	AccountManager();
-	return 0;
+	cout << "Success! " << username << " is now logged out.\n";
+	logStatus = false;
+	username = "";
+	credits = 00.00;
+	user_type = "";
 }
 
 void AccountManager::createUser() { 
