@@ -21,16 +21,22 @@ UserActivity::UserActivity() {
 
 //have user create a bidding advertisement
 void UserActivity::advertise(string user_type) {
-	cout << "\nEnter the name of the item: ";
+	cout << "\nEnter the name of the item (in 25 characters or less): ";
 	cin >> item_name;
 
 	cout << "\nEnter minimum bid (eg 15.00): ";
 	cin >> min_bid;
-
-	cout << "\nEnter number of days available to bid: ";
+	
+	cout << "\nEnter number of days available to bid (max 100 days): ";
 	cin >> num_days;
+	
+	if (min_bid < 15 || num_days > 100 || item_name.size() > 25) {
+		cout << "ERROR! Please try again.";
+		return;
+	}
 }
 
+//have a user bid on an item listed
 void UserActivity::bid(string user_type) {
 	
 	cout << "== Create a bid ==";
@@ -42,16 +48,23 @@ void UserActivity::bid(string user_type) {
 
 	float previous_bid = getPreviousBid();
 	if (user_type != "AA") {
-		cout << "Our last bidding is at " << previous_bid << ".\n You must bid at least 5% higher than the previous bid shown above.\nEnter here (eg. 230.00): ";
+		cout << "Our last bidding is: $" << previous_bid << ".\n You must bid at least 5% higher than the previous bid shown above.\nEnter here (eg. 230.00): ";
 		cin >> bid_amount;
-		bid_amount = previous_bid;
 	}
 	else {
 		cout << "Enter your bid amount here: ";
 		cin >> bid_amount;
+	}
+
+	if (bid_amount < previous_bid) {
+		cout << "ERROR! Must make a bid larger than the previous bid displayed.";
+		return;
+	}
+	else {
 		bid_amount = previous_bid;
 	}
 
+	
 }
 
 void UserActivity::addCredit(string user_type) {
@@ -59,12 +72,17 @@ void UserActivity::addCredit(string user_type) {
 	if (user_type != "AA") {
 		cout << "\nEnter username to which credit is being added: ";
 		cin >> credit_username;
-		cout << "\nEnter amount: ";
+		cout << "\nEnter amount (max $1000): $";
 		cin >> transf_credit;
 	}
 	else {
-		cout << "\nEnter amount: ";
+		cout << "\nEnter amount (max $1000): $";
 		cin >> transf_credit;
+	}
+
+	if (transf_credit > 1000) {
+		cout << "ERROR! Credit must be less than $1000. Please try again.";
+		return;
 	}
 }
 
