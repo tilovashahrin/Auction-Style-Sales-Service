@@ -19,7 +19,7 @@ UserActivity::UserActivity() {
 	credit_username = "";
 }
 
-
+//have user create a bidding advertisement
 void UserActivity::advertise(string user_type) {
 	cout << "\nEnter the name of the item: ";
 	cin >> item_name;
