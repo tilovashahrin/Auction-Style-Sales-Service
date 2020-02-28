@@ -11,15 +11,20 @@ private:
 	string user_type; // AA=admin, FS=full-standard, BS=buy-standard,SS=sell-standard
 	string username;
 	float credits;
+	string accountFile;
+	string itemFile;
+	string transFile;
 
 public:
 	AccountManager();
 
+	AccountManager(string _accountFile, string _itemFile, string _transFile);
+
 	AccountManager(bool _logStatus, string _user_type, string _username, float _credits); // For Testing Purposes
 
-	int login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
+	void login(string _username); // 0 = Success, 1 = Already Logged In, 2 = No Account
 
-	int logout(); // 0 = Success, 1 = Already Logged Out
+	void logout(); // 0 = Success, 1 = Already Logged Out
 
 	void createUser();
 
@@ -38,5 +43,12 @@ public:
 	float getCredits() { return credits; }
 
 	void setCredits(float _credits) { credits = _credits; };
+
+	void printFiles() // For testing purposes
+	{
+		cout << "Account Database File: " << accountFile << endl;
+		cout << "Item Database File: " << itemFile << endl;
+		cout << "Transaction File: " << transFile << endl;
+	};
 };
 
