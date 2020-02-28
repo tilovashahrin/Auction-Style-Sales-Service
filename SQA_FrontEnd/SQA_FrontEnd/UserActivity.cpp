@@ -101,6 +101,6 @@ void UserActivity::refund(string user_type) {
 	}
 	else {
 		cout << "\n ERROR! You do not have authorization to value refunds.";
-		system("pause");
+		return;
 	}
 }
