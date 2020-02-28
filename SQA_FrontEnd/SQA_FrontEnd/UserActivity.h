@@ -14,7 +14,7 @@ private:
 	float bid_amount; //amount buyer bids for
 	float transf_credit; //amount of credit transferred
 	float refund_credit; //amount of credit refunded
-	float previous_bid; //comapares current bid to previous one
+	float previous_bid; //compares current bid to previous one
 
 public:
 	UserActivity();
