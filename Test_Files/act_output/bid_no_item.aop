@@ -7,4 +7,8 @@ Enter selection:
 == Create a bid ==
  Enter the item name: Enter seller's username: Our last bidding is at 0.00.
  You must bid at least 5% higher than the previous bid shown above.
-Enter here (eg. 230.00): ERROR: That is not even a number.
+Enter here (eg. 230.00): 
+Enter selection: 
+ To exit the menu
+ Success! User is now logged out.
+

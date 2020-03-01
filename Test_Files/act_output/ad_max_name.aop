@@ -6,4 +6,9 @@ Enter selection:
  - Put up an item for auction -
 
 Enter the name of the item: 
-Enter minimum bid (eg 15.00): ERROR: That is not even a number.
+Enter minimum bid (eg 15.00): 
+Enter number of days available to bid: 
+Enter selection: 
+ To exit the menu
+ Success! User is now logged out.
+
