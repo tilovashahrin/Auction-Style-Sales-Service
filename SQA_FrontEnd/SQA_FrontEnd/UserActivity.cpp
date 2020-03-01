@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 using namespace std;
+Transaction daily_trans_file;
 
 UserActivity::UserActivity() {
 	item_name = ""; //less than 25 characters
@@ -21,7 +22,8 @@ UserActivity::UserActivity() {
 }
 
 //have user create a bidding advertisement
-void UserActivity::advertise(string user_type) {
+void UserActivity::advertise(string sellers_username) {
+	system("CLS"); // Clears console
 	cout << "\nEnter the name of the item (in 25 characters or less): ";
 	cin >> item_name;
 
@@ -33,13 +35,26 @@ void UserActivity::advertise(string user_type) {
 		cout << "ERROR: That is not even a number.\n";
 		return;
 	}
-
+	if (min_bid > 999.99) {
+		cin.clear(); //clear bad input flag
+		cout << "ERROR: Maximum price exceeded for minimum bid. Minimum bid must be $999.99 or less.\n";
+		return;
+	}
 	cout << "\nEnter number of days available to bid: ";
 	if (!(cin >> num_days)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 		cout << "ERROR: That is not even a number.\n";
 		return;
+	}
+	if (num_days > 100) {
+		cin.clear(); //clear bad input flag
+		cout << "ERROR: Max number of days exceeded.\n";
+		return;
+	}
+	else {
+		cout << "Advertisement Complete. Information saved into the daily transaction file.\n";
+		daily_trans_file.adv_trans(item_name, sellers_username, num_days, min_bid);
 	}
 }
 
@@ -60,6 +75,10 @@ void UserActivity::bid(string user_type) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
+			return;
+		}
+		if (bid_amount > ((0.05 * previous_bid) + previous_bid)) {
+			cout << "ERROR: bid is less than the minimum amount.";
 			return;
 		}
 		bid_amount = previous_bid;
