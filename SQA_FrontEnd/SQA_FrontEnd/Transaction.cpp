@@ -50,8 +50,9 @@ void  Transaction::bid_trans(string item_name, string sellers_username, string b
 	//XX_IIIIIIIIIIIIIIIIIII_SSSSSSSSSSSSSSS_UUUUUUUUUUUUUU_PPPPPP
 	if (myfile.is_open())
 	{
-		myfile << "03" << "_" << item_name << "_" << sellers_username << "_" << buyers_username << "_" << bid_amount;
+		myfile << "04" << "_" << item_name << "_" << sellers_username << "_" << buyers_username << "_" << bid_amount;
 		myfile.close();
 	}
 	else { cout << "Unable to open file"; }
 }
+
