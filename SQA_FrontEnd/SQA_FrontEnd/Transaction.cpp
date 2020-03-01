@@ -7,6 +7,7 @@
 using namespace std;
 
 Transaction::Transaction() {
+	trans_code = 00;
 	available_credit = 00.00;
 }
 

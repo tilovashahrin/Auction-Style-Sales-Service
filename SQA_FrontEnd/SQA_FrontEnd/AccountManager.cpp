@@ -119,7 +119,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	}
 	else { cout << "Could not save, unable to open file.\n"; exit(1);}
 	// needs to print transation file on logout and update user account info
-	cout << "Success! User is now logged out.\n";
+	cout << "\nSuccess! User is now logged out.\n";
 	cout << "\nInformation saved into the daily transaction file.\n";
 	UserActivity::daily_trans_file.logout_trans(00, username, user_type);
 	logStatus = false;
@@ -168,7 +168,7 @@ void AccountManager::createUser() {
 	if (!(cin >> _credit)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
-		cout << "ERROR: That is not even a number.\n";
+		cout << "ERROR: Inavlid input. Please try again.\n";
 		exit(1);//return;
 	}
 	if (_credit > 999999.99f) {
