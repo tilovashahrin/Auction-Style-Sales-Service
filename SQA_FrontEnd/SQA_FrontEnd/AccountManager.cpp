@@ -6,6 +6,7 @@
 #include <sstream>
 #include <limits>
 using namespace std;
+Transaction daily_trans_file;
 
 AccountManager::AccountManager() {
 	logStatus = false;
@@ -71,7 +72,7 @@ void AccountManager::login(string _username) // 0 = Success, 1 = Already Logged 
 		cout << "Unable to open file.\n";
 		exit(1); //return;
 	}
-	cout << "ERROR: Cannot log in, " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " was not found.\n";
+	cout << "ERROR: Cannot log in, username" << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " was not found.\n";
 	exit(1);
 }
 
@@ -119,6 +120,8 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	else { cout << "Could not save, unable to open file.\n"; exit(1);}
 	// needs to print transation file on logout and update user account info
 	cout << "Success! User is now logged out.\n";
+	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.logout_trans(00, username, user_type);
 	logStatus = false;
 	username = "";
 	credits = 00.00;
@@ -138,27 +141,27 @@ void AccountManager::createUser() {
 	string _username, _utype;
 	float _credit;
 
-	cout << "Welcome! Please select a original username (15chr max): ";
+	cout << "\nWelcome! Please select a original username (15chr max): ";
 	try {
 		cin >> _username;
 
 		if (verifyLogin(_username) == true) {
-			cout << "ERROR: Username is already taken.\n";
+			cout << "\nERROR: Username is already taken.\n";
 			exit(1);//return;
 		}else if(_username.length() > 15){
-			cout << "ERROR: Username exceeds the 15 character max.\n";
+			cout << "\nERROR: Username exceeds the 15 character max.\n";
 			exit(1);//return;
 		}
 	}catch (const std::length_error & le) {
 		cout << "ERROR: Username is to long (15 char max)\n";
 		exit(1);
 	}
-	cout << "What type user will " << _username << " be?\n" 
+	cout << "\nWhat type user will " << _username << " be?\n" 
 			<< "AA = Admin,\nFS = Full - Standard\nBS = Buy - Standard\nSS = Sell - Standard\nPlease select: ";
 	cin >> _utype;
 
 	if (_utype != "AA" && _utype != "FS" && _utype != "BS" && _utype != "SS") {
-		cout << "ERROR: "<< _utype <<" is not user type.\n";
+		cout << "\nERROR: "<< _utype <<" is not user type.\n";
 		exit(1);//return;
 	}
 	cout << "Please enter the funds for " << _username << " ($999999.99 max): ";
@@ -200,6 +203,8 @@ void AccountManager::createUser() {
 	}
 	else { cout << "ERROR: Could not save, unable to open file"; exit(1); }
 	
+	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.logout_trans(01, _username, _utype);
 }
 
 void AccountManager::deleteUser() {
@@ -241,6 +246,10 @@ void AccountManager::deleteUser() {
 		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " is no more!\n\n";
 	}
 	else { cout << "ERROR: Could not save, unable to open file\n"; exit(1);}
+
+	//prints transaction file
+	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.logout_trans(02, _username, user_type);
 }
 
 bool AccountManager::verifyLogin(string _username)
