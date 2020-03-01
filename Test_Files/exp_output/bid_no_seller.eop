@@ -3,7 +3,7 @@ enter command:
 enter command:
 item name:
 seller's username:
-new bid ($):
-ERROR: user does not have privilege to bid, only sell
+new bid($):
+ERROR: seller for this item does not exist
 enter command:
 logging out of account...

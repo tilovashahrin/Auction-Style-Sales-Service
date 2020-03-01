@@ -42,7 +42,7 @@ void AccountManager::login(string _username) // 0 = Success, 1 = Already Logged 
 {
 	if (logStatus) {
 		cout << "ERROR: Cannot log in, " << username << " is already logged in.\n";
-		return; // Already logged in
+		exit(1);//return; // Already logged in
 	}
 
 	//UUUUUUUUUUUUUUU_TT_CCCCCCCCC
@@ -69,16 +69,17 @@ void AccountManager::login(string _username) // 0 = Success, 1 = Already Logged 
 	}
 	else {
 		cout << "Unable to open file.\n";
-		return;
+		exit(1); //return;
 	}
-	cout << "ERROR: Cannot log in, " << username << " was not found.\n";
+	cout << "ERROR: Cannot log in, " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " was not found.\n";
+	exit(1);
 }
 
 void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 {
 	if (!logStatus) {
 		cout << "User is already logged out.\n";
-		return;
+		exit(1); //return;
 	}
 	username = username.append(15 - username.length(), ' '); // Add Whitespace
 	string line;
@@ -115,7 +116,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 		}
 		
 	}
-	else { cout << "Could not save, unable to open file.\n"; }
+	else { cout << "Could not save, unable to open file.\n"; exit(1);}
 	// needs to print transation file on logout and update user account info
 	cout << "Success! User is now logged out.\n";
 	logStatus = false;
@@ -128,44 +129,48 @@ void AccountManager::createUser() {
 
 	if (!logStatus) {
 		cout << "ERROR: No account logged in.\n";
-		return;
+		exit(1);//return;
 	}else if (user_type != "AA") {
 		cout << "ERROR: Must be an admin to creat user.\n";
-		return;
+		exit(1);//return;
 	}
 
 	string _username, _utype;
 	float _credit;
 
 	cout << "Welcome! Please select a original username (15chr max): ";
-	cin >> _username;
+	try {
+		cin >> _username;
 
-	if (verifyLogin(_username) == true) {
-		cout << "ERROR: Username is already taken.\n";
-		return;
-	}else if(_username.length() > 15){
-		cout << "ERROR: Username exceeds the 15 character max.\n";
-		return;
+		if (verifyLogin(_username) == true) {
+			cout << "ERROR: Username is already taken.\n";
+			exit(1);//return;
+		}else if(_username.length() > 15){
+			cout << "ERROR: Username exceeds the 15 character max.\n";
+			exit(1);//return;
+		}
+	}catch (const std::length_error & le) {
+		cout << "ERROR: Username is to long (15 char max)\n";
+		exit(1);
 	}
-
 	cout << "What type user will " << _username << " be?\n" 
 			<< "AA = Admin,\nFS = Full - Standard\nBS = Buy - Standard\nSS = Sell - Standard\nPlease select: ";
 	cin >> _utype;
 
 	if (_utype != "AA" && _utype != "FS" && _utype != "BS" && _utype != "SS") {
 		cout << "ERROR: "<< _utype <<" is not user type.\n";
-		return;
+		exit(1);//return;
 	}
 	cout << "Please enter the funds for " << _username << " ($999999.99 max): ";
 	if (!(cin >> _credit)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 		cout << "ERROR: That is not even a number.\n";
-		return;
+		exit(1);//return;
 	}
 	if (_credit > 999999.99f) {
 		cout << "ERROR: " << _credit << " exceeds the $999999.99 max.\n";
-		return;
+		exit(1);//return;
 	}
 
 	string line;
@@ -186,24 +191,25 @@ void AccountManager::createUser() {
 		outfile.close();
 		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
 			cout << "ERROR: There was an error saving the file\n";
-			return;
+			exit(1);//return;
 		}
 
 		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1)
 			<< " Was Created! They are a " << _utype
 			<< " type user, with $" << _credit << ".\n\n";
 	}
-	else { cout << "ERROR: Could not save, unable to open file"; }
+	else { cout << "ERROR: Could not save, unable to open file"; exit(1); }
+	
 }
 
 void AccountManager::deleteUser() {
 	if (!logStatus) {
 		cout << "ERROR: No account logged in.\n";
-		return;
+		exit(1);//return;
 	}
 	else if (user_type != "AA") {
 		cout << "ERROR: Must be an admin to creat user.\n";
-		return;
+		exit(1);//return;
 	}
 
 	string _username;
@@ -213,7 +219,7 @@ void AccountManager::deleteUser() {
 
 	if (verifyLogin(_username) != true) {
 		cout << "ERROR: This user does not exist.\n";
-		return;
+		exit(1);//return;
 	}
 	_username = _username.append(15 - _username.length(), ' '); // Add Whitespace
 	string line;
@@ -230,11 +236,11 @@ void AccountManager::deleteUser() {
 		outfile.close();
 		if (remove(accountFile.c_str()) != 0 || rename("temp.txt", accountFile.c_str()) != 0) {
 			cout << "ERROR: There was an error saving the file\n";
-			return;
+			exit(1);//return;
 		}
 		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " is no more!\n\n";
 	}
-	else { cout << "ERROR: Could not save, unable to open file\n"; }
+	else { cout << "ERROR: Could not save, unable to open file\n"; exit(1);}
 }
 
 bool AccountManager::verifyLogin(string _username)

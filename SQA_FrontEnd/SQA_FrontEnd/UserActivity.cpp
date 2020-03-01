@@ -25,15 +25,15 @@ UserActivity::UserActivity() {
 void UserActivity::advertise(string sellers_username) {
 	system("CLS"); // Clears console
 	cout << "\nEnter the name of the item (in 25 characters or less): ";
+
 	cin >> item_name;
 
 	cout << "\nEnter minimum bid (eg 15.00): ";
-  
 	if (!(cin >> min_bid)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 		cout << "ERROR: That is not even a number.\n";
-		return;
+		exit(1);//return;
 	}
 	if (min_bid > 999.99) {
 		cin.clear(); //clear bad input flag
@@ -45,8 +45,9 @@ void UserActivity::advertise(string sellers_username) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 		cout << "ERROR: That is not even a number.\n";
-		return;
+		exit(1);//return;
 	}
+
 	if (num_days > 100) {
 		cin.clear(); //clear bad input flag
 		cout << "ERROR: Max number of days exceeded.\n";
@@ -56,9 +57,9 @@ void UserActivity::advertise(string sellers_username) {
 		cout << "Advertisement Complete. Information saved into the daily transaction file.\n";
 		daily_trans_file.adv_trans(item_name, sellers_username, num_days, min_bid);
 	}
+
 }
 
-//have a user bid on an item listed
 void UserActivity::bid(string user_type) {
 	
 	cout << "== Create a bid ==";
@@ -75,7 +76,7 @@ void UserActivity::bid(string user_type) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
-			return;
+			exit(1);//return;
 		}
 		if (bid_amount > ((0.05 * previous_bid) + previous_bid)) {
 			cout << "ERROR: bid is less than the minimum amount.";
@@ -89,24 +90,25 @@ void UserActivity::bid(string user_type) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
-			return;
+			exit(1);//return;
 		}
 		bid_amount = previous_bid;
 	}
+
 }
 
-//allows user to add credit to an existing user
 void UserActivity::addCredit(string user_type) {
 	cout << "In a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
 		cout << "\nEnter username to which credit is being added: ";
+		
 		cin >> credit_username;
 		cout << "\nEnter amount: ";
 		if (!(cin >> transf_credit)) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
-			return;
+			exit(1);//return;
 		}
 	}
 	else {
@@ -115,17 +117,11 @@ void UserActivity::addCredit(string user_type) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
-			return;
+			exit(1);//return;
 		}
-	}
-
-	if (transf_credit > 1000) {
-		cout << "ERROR! Credit must be less than $1000. Please try again.";
-		return;
 	}
 }
 
-//allows user to refund money to buyers account
 void UserActivity::refund(string user_type) {
 	if (user_type == "AA") {
 		cout << "\nEnter buyer's username: ";
@@ -139,10 +135,11 @@ void UserActivity::refund(string user_type) {
 			cin.clear(); //clear bad input flag
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
 			cout << "ERROR: That is not even a number.\n";
-			return;
+			exit(1);//return;
 		}
 	}
 	else {
 		cout << "\n ERROR! You do not have authorization to value refunds.";
+		exit(1);
 	}
 }

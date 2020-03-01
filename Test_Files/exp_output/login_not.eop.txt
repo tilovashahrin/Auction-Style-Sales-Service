@@ -1,2 +1,0 @@
-Enter command:
-ERROR: user is not logged in

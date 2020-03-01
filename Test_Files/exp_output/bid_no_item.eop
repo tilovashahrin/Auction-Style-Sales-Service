@@ -4,6 +4,6 @@ enter command:
 item name:
 seller's username:
 new bid($):
-ERROR: seller for this item does not exist
+ERROR: item name does not exist
 enter command:
 logging out of account...
