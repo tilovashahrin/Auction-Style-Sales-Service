@@ -1,14 +1,8 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! stdUser0110 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ To exit the menu
+ Success! User is now logged out.
+
