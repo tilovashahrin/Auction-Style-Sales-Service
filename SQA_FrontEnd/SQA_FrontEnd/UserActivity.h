@@ -2,8 +2,7 @@
 #include "Transaction.h"
 #include <string>
 using namespace std;
-class UserActivity : public Transaction
-{
+class UserActivity : public Transaction {
 private:
 	char item_name[25];
 	string sellers_username;
@@ -17,6 +16,7 @@ private:
 	float previous_bid;
 
 public:
+	Transaction daily_trans_file;
 	UserActivity();
 	void advertise(string user_type);
 	void bid(string user_type);

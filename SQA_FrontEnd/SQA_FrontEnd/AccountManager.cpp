@@ -6,7 +6,7 @@
 #include <sstream>
 #include <limits>
 using namespace std;
-Transaction daily_trans_file;
+//Transaction UserActivity::daily_trans_file;
 
 AccountManager::AccountManager() {
 	logStatus = false;
@@ -121,7 +121,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	// needs to print transation file on logout and update user account info
 	cout << "Success! User is now logged out.\n";
 	cout << "\nInformation saved into the daily transaction file.\n";
-	daily_trans_file.logout_trans(00, username, user_type);
+	UserActivity::daily_trans_file.logout_trans(00, username, user_type);
 	logStatus = false;
 	username = "";
 	credits = 00.00;
@@ -204,7 +204,7 @@ void AccountManager::createUser() {
 	else { cout << "ERROR: Could not save, unable to open file"; exit(1); }
 	
 	cout << "\nUser creation is complete. Information saved into the daily transaction file.\n";
-	daily_trans_file.logout_trans(01, _username, _utype);
+	UserActivity::daily_trans_file.logout_trans(01, _username, _utype);
 }
 
 void AccountManager::deleteUser() {
@@ -249,7 +249,7 @@ void AccountManager::deleteUser() {
 
 	//prints transaction file
 	cout << "\Deletion Complete. Information saved into the daily transaction file.\n";
-	daily_trans_file.logout_trans(02, _username, user_type);
+	UserActivity::daily_trans_file.logout_trans(02, _username, user_type);
 }
 
 bool AccountManager::verifyLogin(string _username)

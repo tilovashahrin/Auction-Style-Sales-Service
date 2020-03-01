@@ -6,7 +6,7 @@
 #include <limits>
 
 using namespace std;
-Transaction daily_trans_file;
+
 
 UserActivity::UserActivity() {
 	item_name; //less than 25 characters
