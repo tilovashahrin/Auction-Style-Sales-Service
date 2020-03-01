@@ -120,7 +120,7 @@ void AccountManager::logout() // 0 = Success, 1 = Already Logged Out
 	else { cout << "Could not save, unable to open file.\n"; exit(1);}
 	// needs to print transation file on logout and update user account info
 	cout << "Success! User is now logged out.\n";
-	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	cout << "\nInformation saved into the daily transaction file.\n";
 	daily_trans_file.logout_trans(00, username, user_type);
 	logStatus = false;
 	username = "";
@@ -203,7 +203,7 @@ void AccountManager::createUser() {
 	}
 	else { cout << "ERROR: Could not save, unable to open file"; exit(1); }
 	
-	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	cout << "\nUser creation is complete. Information saved into the daily transaction file.\n";
 	daily_trans_file.logout_trans(01, _username, _utype);
 }
 
@@ -248,7 +248,7 @@ void AccountManager::deleteUser() {
 	else { cout << "ERROR: Could not save, unable to open file\n"; exit(1);}
 
 	//prints transaction file
-	cout << "\nAdvertisement Complete. Information saved into the daily transaction file.\n";
+	cout << "\Deletion Complete. Information saved into the daily transaction file.\n";
 	daily_trans_file.logout_trans(02, _username, user_type);
 }
 
