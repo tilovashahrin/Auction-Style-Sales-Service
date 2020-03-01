@@ -5,7 +5,7 @@ using namespace std;
 class UserActivity : public Transaction
 {
 private:
-	string item_name;
+	char item_name[25];
 	string sellers_username;
 	string buyers_username;
 	string credit_username;
