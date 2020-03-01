@@ -5,12 +5,11 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    char selection;
+    string selection;
     string username;
-    bool menu = false;// keep menu running whlie true
+    bool menu = true;// keep menu running whlie true
 
     AccountManager user;
-    //takes in exactly 4 arguments
     if (argc == 4) {
         user = AccountManager(string(argv[1]), string(argv[2]), string(argv[3]));
     }
@@ -21,46 +20,55 @@ int main(int argc, char* argv[]) {
     //AccountManager user(true, "AA", "user_1", 1000.00f); // Testing purpose
     cout << setprecision(2) << fixed;
     do {
-        
-        cout << "\n Menu";
-        cout << "\n========";
-        if (user.getLogStatus()) {
-            cout << "\n Current User: " << user.getUsername()
-                    << "\n User Funds: $" << user.getCredits()
-                    << "\n User Type: " << user.getUserType()
-                    << "\n========";
-        }
-        //options for user to input
-        cout << "\n I - Log In";
+        //
+        //cout << "\nMenu";
 
-        cout << "\n O - Log Out";
+        //cout << "\n========";
+        //if (user.getLogStatus()) {
+        //    cout << "\n Current User: " << user.getUsername()
+        //            << "\n User Funds: $" << user.getCredits()
+        //            << "\n User Type: " << user.getUserType()
+        //            << "\n========";
+        //}
+        //cout << "\n I - Log In";
 
-        cout << "\n C - Create (Admin Only)";
+        //cout << "\n O - Log Out";
 
-        cout << "\n D - Delete (Admin Only)";
+        //cout << "\n C - Create (Admin Only)";
 
-        cout << "\n A - Advertise";
+        //cout << "\n D - Delete (Admin Only)";
 
-        cout << "\n B - Bid";
+        //cout << "\n A - Advertise";
 
-        cout << "\n R - Refund (Admin Only)";
+        //cout << "\n B - Bid";
 
-        // already had A and C in the menu, so I used "funds" instead of "credits"
-        cout << "\n F - Add Funds"; 
+        //cout << "\n R - Refund (Admin Only)";
 
-        cout << "\n X - Exit";
+        //// already had A and C in the menu, so I used "funds" instead of "credits"
+        //cout << "\n F - Add Funds"; 
 
-        cout << "\n Enter selection: ";
+        //cout << "\n X - Exit";
+
+        cout << "Enter selection: ";//cout << "\n Enter selection: ";
 
         // read the input
-        cin >> selection;
 
-        switch (selection) {
+        cin >> selection;
+        if (selection.length() > 1) {
+            selection = "";
+        }
+        
+        switch (selection[0]) {
         case 'I':
         case 'i': {cout << "\n - Log In to account -\n";}
                 cout << "Enter Username: ";
-                cin >> username;
-                user.login(username);
+                try {
+                    cin >> username;
+                    user.login(username);
+                }catch (const std::length_error & le) {
+                    cout << "ERROR: Username is to long (15 char max)\n";
+                    exit(1);
+                }
 
                 //system("pause"); // Waits for input
                 //system("CLS"); // Clears console
@@ -80,7 +88,7 @@ int main(int argc, char* argv[]) {
                 break;
         case 'D':
         case 'd': {cout << "\n - Remove users (this also cancels their sales) -\n";}
-                user.deleteUser(); //Function call here
+                user.deleteUser();
                 //system("pause"); // Waits for input
                 //system("CLS"); // Clears console
                 break;
@@ -99,7 +107,7 @@ int main(int argc, char* argv[]) {
                 //system("CLS"); // Clears console
                 break;
         case 'R':
-        case 'r': {cout << "\n - Refund credit to a buyerâ€™s account from a sellerâ€™s account -\n";}
+        case 'r': {cout << "\n - Refund credit to a buyer’s account from a seller’s account -\n";}
                 user.refund();
                 // Function Call Here
                 //system("pause"); // Waits for input
@@ -121,6 +129,7 @@ int main(int argc, char* argv[]) {
         default: cout << "\n Invalid selection";
             // no break in the default case
         }
+
         cout << "\n";
     }while (menu);
     return 0;
