@@ -12,9 +12,9 @@ private:
 	int num_days; //number of days until the auction ends
 	float min_bid; //min amount of bidding ask from advertiser
 	float bid_amount; //amount buyer bids for
-	float transf_credit; //amount of credit transferred
-	float refund_credit; //amount of credit refunded
-	float previous_bid; //compares current bid to previous one
+	float transf_credit;
+	float refund_credit;
+	float previous_bid;
 
 public:
 	UserActivity();
