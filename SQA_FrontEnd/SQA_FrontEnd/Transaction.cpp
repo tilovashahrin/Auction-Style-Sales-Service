@@ -12,7 +12,7 @@ Transaction::Transaction() {
 
 void Transaction::logout_trans(int trans_code, string username, string user_type) {
 
-	ofstream myfile("DateFiles/Transaction_File.txt");
+	ofstream myfile("DataFiles/logout_Transaction_File.txt");
 	//XX_UUUUUUUUUUUUUUU_TT_CCCCCCCCC
 	if (myfile.is_open())
 	{
@@ -24,7 +24,7 @@ void Transaction::logout_trans(int trans_code, string username, string user_type
 
 void Transaction::refund_trans(string buyers_username, string sellers_username, float refund_credit) {
 
-	ofstream myfile("DateFiles/Transaction_File.txt");
+	ofstream myfile("DataFiles/Refund_Transaction_File.txt");
 	//XX_UUUUUUUUUUUUUUU_SSSSSSSSSSSSSSS_CCCCCCCCC
 	if (myfile.is_open())
 	{
@@ -35,7 +35,7 @@ void Transaction::refund_trans(string buyers_username, string sellers_username, 
 }
 
 void Transaction::adv_trans(string item_name, string sellers_username, int num_days, float min_bid) {
-	ofstream myfile("DateFiles/Transaction_File.txt");
+	ofstream myfile("DataFiles/Advertise_Transaction_File.txt");
 	//XX_IIIIIIIIIIIIIIIIIII_SSSSSSSSSSSSS_DDD_PPPPPP
 	if (myfile.is_open())
 	{
@@ -46,7 +46,7 @@ void Transaction::adv_trans(string item_name, string sellers_username, int num_d
 }
 
 void  Transaction::bid_trans(string item_name, string sellers_username, string buyers_username, float bid_amount) {
-	ofstream myfile("DateFiles/Transaction_File.txt");
+	ofstream myfile("DataFiles/Bid_Transaction_File.txt");
 	//XX_IIIIIIIIIIIIIIIIIII_SSSSSSSSSSSSSSS_UUUUUUUUUUUUUU_PPPPPP
 	if (myfile.is_open())
 	{
@@ -54,12 +54,4 @@ void  Transaction::bid_trans(string item_name, string sellers_username, string b
 		myfile.close();
 	}
 	else { cout << "Unable to open file"; }
-}
-
-void Transaction::account_file() {
-
-}
-
-void Transaction::items_file() {
-
 }
