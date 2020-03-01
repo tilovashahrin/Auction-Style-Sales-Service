@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 UserActivity::UserActivity() {
 	item_name; //less than 25 characters
 	num_days = 1; //less than 100 days
@@ -106,8 +105,20 @@ void UserActivity::bid(string user_type) {
 void UserActivity::addCredit(string user_type) {
 	cout << "\nIn a given session, you must enter a credit amount of less than $1000\n";
 	if (user_type != "AA") {
+		cout << "\nEnter amount: ";
+		if (!(cin >> transf_credit)) {
+			cin.clear(); //clear bad input flag
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
+			cout << "\nERROR: Inavlid input. Please try again.\n";
+			exit(1);//return;
+		}
+		if (transf_credit > 1000) {
+			cout << "ERROR! Exceeded transfer limit. Please try again.";
+			return;
+		}
+	}
+	else {
 		cout << "\nEnter username to which credit is being added: ";
-		
 		cin >> credit_username;
 		cout << "\nEnter amount: ";
 		if (!(cin >> transf_credit)) {
@@ -116,13 +127,12 @@ void UserActivity::addCredit(string user_type) {
 			cout << "\nERROR: Inavlid input. Please try again.\n";
 			exit(1);//return;
 		}
-	}
-	else {
-		cout << "\nEnter amount: ";
-		if (!(cin >> transf_credit)) {
-			cin.clear(); //clear bad input flag
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
-			cout << "\nERROR: Inavlid input. Please try again.\n";
+		if (transf_credit > 1000) {
+			cout << "ERROR! Exceeded transfer limit. Please try again.";
+			return;
+		}
+		if (acc.verifyLogin(credit_username) != true) {
+			cout << "ERROR: This user does not exist.\n";
 			exit(1);//return;
 		}
 	}

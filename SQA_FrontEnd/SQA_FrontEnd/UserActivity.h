@@ -1,5 +1,6 @@
 #pragma once
 #include "Transaction.h"
+#include "AccountManager.h"
 #include <string>
 using namespace std;
 class UserActivity : public Transaction {
@@ -17,6 +18,7 @@ private:
 
 public:
 	Transaction daily_trans_file;
+	AccountManager acc;
 	UserActivity();
 	void advertise(string user_type);
 	void bid(string user_type);

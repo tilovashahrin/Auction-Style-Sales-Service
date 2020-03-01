@@ -6,7 +6,6 @@
 #include <sstream>
 #include <limits>
 using namespace std;
-//Transaction UserActivity::daily_trans_file;
 
 AccountManager::AccountManager() {
 	logStatus = false;
@@ -168,11 +167,11 @@ void AccountManager::createUser() {
 	if (!(cin >> _credit)) {
 		cin.clear(); //clear bad input flag
 		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //discard input
-		cout << "ERROR: Inavlid input. Please try again.\n";
+		cout << "\nERROR: Inavlid input. Please try again.\n";
 		exit(1);//return;
 	}
 	if (_credit > 999999.99f) {
-		cout << "ERROR: " << _credit << " exceeds the $999999.99 max.\n";
+		cout << "\nERROR: " << _credit << " exceeds the $999999.99 max.\n";
 		exit(1);//return;
 	}
 
@@ -193,7 +192,7 @@ void AccountManager::createUser() {
 		infile.close();
 		outfile.close();
 		if (remove("DataFiles/UserDB.txt") != 0 || rename("DataFiles/temp.txt", "DataFiles/UserDB.txt") != 0) {
-			cout << "ERROR: There was an error saving the file\n";
+			cout << "\nERROR: There was an error saving the file\n";
 			exit(1);//return;
 		}
 
@@ -201,7 +200,7 @@ void AccountManager::createUser() {
 			<< " Was Created! They are a " << _utype
 			<< " type user, with $" << _credit << ".\n\n";
 	}
-	else { cout << "ERROR: Could not save, unable to open file"; exit(1); }
+	else { cout << "\nERROR: Could not save, unable to open file"; exit(1); }
 	
 	cout << "\nUser creation is complete. Information saved into the daily transaction file.\n";
 	UserActivity::daily_trans_file.logout_trans(01, _username, _utype);
@@ -209,17 +208,17 @@ void AccountManager::createUser() {
 
 void AccountManager::deleteUser() {
 	if (!logStatus) {
-		cout << "ERROR: No account logged in.\n";
+		cout << "\nERROR: No account logged in.\n";
 		exit(1);//return;
 	}
 	else if (user_type != "AA") {
-		cout << "ERROR: Must be an admin to creat user.\n";
+		cout << "\nERROR: Must be an admin to creat user.\n";
 		exit(1);//return;
 	}
 
 	string _username;
 
-	cout << "Please select a user by their username: ";
+	cout << "\nPlease select a user by their username: ";
 	cin >> _username;
 
 	if (verifyLogin(_username) != true) {
@@ -240,7 +239,7 @@ void AccountManager::deleteUser() {
 		infile.close();
 		outfile.close();
 		if (remove(accountFile.c_str()) != 0 || rename("temp.txt", accountFile.c_str()) != 0) {
-			cout << "ERROR: There was an error saving the file\n";
+			cout << "\nERROR: There was an error saving the file\n";
 			exit(1);//return;
 		}
 		cout << "\nSuccess! User " << _username.erase(_username.find_last_not_of(" \t\f\v\n\r") + 1) << " is no more!\n\n";
