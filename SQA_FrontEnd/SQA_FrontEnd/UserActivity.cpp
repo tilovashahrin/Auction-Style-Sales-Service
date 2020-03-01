@@ -4,11 +4,12 @@
 #include <string>
 #include <iostream>
 #include <limits>
+
 using namespace std;
 Transaction daily_trans_file;
 
 UserActivity::UserActivity() {
-	item_name = ""; //less than 25 characters
+	item_name; //less than 25 characters
 	num_days = 1; //less than 100 days
 	min_bid = 00.00; //less than 999.99
 	bid_amount = 00.00;
@@ -23,9 +24,7 @@ UserActivity::UserActivity() {
 
 //have user create a bidding advertisement
 void UserActivity::advertise(string sellers_username) {
-	system("CLS"); // Clears console
 	cout << "\nEnter the name of the item (in 25 characters or less): ";
-
 	cin >> item_name;
 
 	cout << "\nEnter minimum bid (eg 15.00): ";
@@ -78,7 +77,7 @@ void UserActivity::bid(string user_type) {
 			cout << "ERROR: That is not even a number.\n";
 			exit(1);//return;
 		}
-		if (bid_amount > ((0.05 * previous_bid) + previous_bid)) {
+		if (bid_amount < ((0.05 * previous_bid) + previous_bid)) {
 			cout << "ERROR: bid is less than the minimum amount.";
 			return;
 		}
@@ -94,7 +93,8 @@ void UserActivity::bid(string user_type) {
 		}
 		bid_amount = previous_bid;
 	}
-
+	cout << "Bid Complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.bid_trans(item_name, sellers_username, buyers_username, bid_amount);
 }
 
 void UserActivity::addCredit(string user_type) {
@@ -120,6 +120,8 @@ void UserActivity::addCredit(string user_type) {
 			exit(1);//return;
 		}
 	}
+	cout << "Credit transaction complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.logout_trans(06, buyers_username, user_type);
 }
 
 void UserActivity::refund(string user_type) {
@@ -142,4 +144,6 @@ void UserActivity::refund(string user_type) {
 		cout << "\n ERROR! You do not have authorization to value refunds.";
 		exit(1);
 	}
+	cout << "Refund Complete. Information saved into the daily transaction file.\n";
+	daily_trans_file.refund_trans(buyers_username, sellers_username, refund_credit);
 }
