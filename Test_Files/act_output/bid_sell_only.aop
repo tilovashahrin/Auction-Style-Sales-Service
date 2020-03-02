@@ -1,14 +1,21 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! seller77 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Bid on an item for auction -
+== Create a bid ==
+ Enter the item name: 
+Enter seller's username: 
+Our last bidding is at 0.00.
+ You must bid at least 5% higher than the previous bid shown above.
+Enter here (eg. 230.00): 
+Bid Complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ To exit the menu
+ 
+Success! User is now logged out.
+
+Information saved into the daily transaction file.
+

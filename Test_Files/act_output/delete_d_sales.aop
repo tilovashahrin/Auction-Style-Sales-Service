@@ -1,14 +1,25 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! BigAdmin01 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Remove users (this also cancels their sales) -
+
+Please select a user by their username: 
+Deletion Complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ - Bid on an item for auction -
+== Create a bid ==
+ Enter the item name: 
+Enter seller's username: 
+Enter your bid amount here: 
+Bid Complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ To exit the menu
+ 
+Success! User is now logged out.
+
+Information saved into the daily transaction file.
+

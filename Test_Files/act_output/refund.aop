@@ -1,14 +1,19 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! BigAdmin01 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Refund credit to a buyer’s account from a seller’s account -
+
+Enter buyer's username: 
+Enter seller's username: 
+Enter the amount of credit you wish to transfer: 
+Refund Complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ To exit the menu
+ 
+Success! User is now logged out.
+
+Information saved into the daily transaction file.
+

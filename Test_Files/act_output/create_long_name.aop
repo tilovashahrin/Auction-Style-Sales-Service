@@ -1,14 +1,8 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! BigAdmin01 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Create a new user -
+
+Welcome! Please select a original username (15chr max): ERROR: Username is to long (15 char max)

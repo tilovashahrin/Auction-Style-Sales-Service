@@ -1,14 +1,19 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! examUser123 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Put up an item for auction -
+
+Enter the name of the item (in 25 characters or less): 
+Enter minimum bid (eg 15.00): 
+Enter number of days available to bid: 
+Advertisement Complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ To exit the menu
+ 
+Success! User is now logged out.
+
+Information saved into the daily transaction file.
+

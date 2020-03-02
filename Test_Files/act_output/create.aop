@@ -1,14 +1,23 @@
+Enter selection: 
+ - Log In to account -
+Enter Username: Success! BigAdmin01 is now logged in.
 
- Menu
-========
- I - Log In
- O - Log Out
- C - Create (Admin Only)
- D - Delete (Admin Only)
- A - Advertise
- B - Bid
- R - Refund (Admin Only)
- F - Add Funds
- X - Exit
- Enter selection: 
- Invalid selection
+Enter selection: 
+ - Create a new user -
+
+Welcome! Please select a original username (15chr max): 
+What type user will newGuy00 be?
+AA = Admin,
+FS = Full - Standard
+BS = Buy - Standard
+SS = Sell - Standard
+Please select: Please enter the funds for newGuy00 ($999999.99 max): 
+User creation is complete. Information saved into the daily transaction file.
+
+Enter selection: 
+ To exit the menu
+ 
+Success! User is now logged out.
+
+Information saved into the daily transaction file.
+
