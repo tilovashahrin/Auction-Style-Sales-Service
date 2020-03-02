@@ -1,11 +1,14 @@
 #pragma once
 #include "Transaction.h"
-#include "AccountManager.h"
+
 #include <string>
+#include <iostream>
+
 using namespace std;
 class UserActivity : public Transaction {
 private:
-	char item_name[25];
+	string itemFile;
+	string item_name;
 	string sellers_username;
 	string buyers_username;
 	string credit_username;
@@ -17,13 +20,18 @@ private:
 	float previous_bid;
 
 public:
-	Transaction daily_trans_file;
-	AccountManager acc;
+
 	UserActivity();
+	UserActivity(string file);
 	void advertise(string user_type);
 	void bid(string user_type);
 	void addCredit(string user_type);
 	void refund(string user_type);
 	float getPreviousBid() { return previous_bid; }
+
+	void setItemFile(string file) { itemFile = file; };
+	string getItemFile() { return itemFile; };
+	virtual bool verifyLogin(string _username) = 0;
+	virtual string getUser (string _username) = 0;
 };
 
