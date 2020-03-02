@@ -12,8 +12,7 @@ private:
 	string username;
 	float credits;
 	string accountFile;
-	string itemFile;
-	string transFile;
+	
 
 public:
 	AccountManager();
@@ -41,14 +40,15 @@ public:
 	bool getLogStatus() { return logStatus; };
 	string getUserType() { return user_type; };
 	float getCredits() { return credits; }
+	string getUser(string _username);
 
 	void setCredits(float _credits) { credits = _credits; };
 
 	void printFiles() // For testing purposes
 	{
 		cout << "Account Database File: " << accountFile << endl;
-		cout << "Item Database File: " << itemFile << endl;
-		cout << "Transaction File: " << transFile << endl;
+		cout << "Item Database File: " << getItemFile() << endl;
+		cout << "Transaction File: " << getTransFile() << endl;
 	};
 };
 
